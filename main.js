@@ -32,9 +32,18 @@ var x = null;
     };
 
     function clear(str) {
-        return str.replaceAll(/[\u00A0-\u9999<>\&]/g, function(i) {
-            return `&#${i.charCodeAt(0)};`;
-        });
+        let replaceTable = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;'
+        };
+
+        for (o in replaceTable) {
+            if (!str.includes(replaceTable[o])) {
+            }
+        }
+        
+        return str;
     }
 
     var nofiticationEnabled = false;
