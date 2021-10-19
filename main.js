@@ -33,14 +33,12 @@ var x = null;
 
     function clear(str) {
         let replaceTable = {
-            '&': '&amp;',
             '<': '&lt;',
             '>': '&gt;'
         };
 
         for (o in replaceTable) {
-            if (!str.includes(replaceTable[o])) {
-            }
+            str = str.replaceAll(o, replaceTable[o]);
         }
         
         return str;
