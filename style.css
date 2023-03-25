@@ -58,6 +58,7 @@ button:hover {
 #room {
     border: 2px solid #dddddd;
     margin-bottom: 10px;
+    display: none;
 }
 
 .message {

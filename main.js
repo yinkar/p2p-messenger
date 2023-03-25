@@ -3,26 +3,26 @@ var x = null;
 
 (function() {
     $.fn.shake = function (options) {
-        // defaults
+        // Defaults
         var settings = {
             'shakes': 3,
             'distance': 15,
             'duration': 400
         };
-        // merge options
+        // Merge options
         if (options) {
             $.extend(settings, options);
         }
-        // make it so
+        // Make it so
         var pos;
         return this.each(function () {
             $this = $(this);
-            // position if necessary
+            // Position if necessary
             pos = $this.css('position');
             if (!pos || pos === 'static') {
                 $this.css('position', 'relative');
             }
-            // shake it
+            // Shake it
             for (var x = 1; x <= settings.shakes; x++) {
                 $this.animate({ left: settings.distance * -1, top: settings.distance * -1 }, (settings.duration / settings.shakes) / 4)
                     .animate({ left: settings.distance }, (settings.duration / settings.shakes) / 2)
@@ -53,13 +53,11 @@ var x = null;
         else {
             Notification.requestPermission()
             .then(function(result) {
-                console.log(result);
                 nofiticationEnabled = true;
                 notify('İzin verildi');
             })
             .catch(function(err) {
                 nofiticationEnabled = false;
-                console.log(err);
             });
         }
 
@@ -102,7 +100,7 @@ var x = null;
     
     function initialize() {
         $('#room').html('');
-        $('#remoteID').focus();
+        $('#remote-id').focus();
         $('#connector').show();
 
         $('#messagebox').hide();
@@ -158,12 +156,10 @@ var x = null;
 
         peer.on('open', function(id) {
             if (peer.id === null) {
-                console.log('Peer ID is null');
                 peer.id = 'Denek' + Math.floor((Math.random() * 9999) + 1);
             }
             
-            console.log('ID: \n' + peer.id);
-            $('#localID').val(peer.id);
+            $('#local-id').val(peer.id);
             $('#status').text('Waiting...');
         });
 
@@ -188,14 +184,14 @@ var x = null;
             $('#nudge').fadeIn();
             $('#message').focus();
 
+            $('#room').show();
+
             x = conn;
             
-            console.log('Connected to: ' + conn.peer);
             $('#status').text('Connected to: ' + conn.peer);
 
                 
             conn.on('data', function(data) {
-                console.log(data);
                 
                 $('#isTyping').text('Typing...');
 
@@ -227,18 +223,15 @@ var x = null;
 
         peer.on('disconnected', function() {
             $('#status').text('Connection lost');
-            console.log('Connection lost');
         });
 
 
         peer.on('close', function() {
             conn = null;
             $('#status').text('Connection destroyed');
-            console.log('Connection destroyed');
         });
 
         peer.on('error', function(err) {
-            console.log(err);
             alert('' + err);
         });
     }
@@ -246,7 +239,7 @@ var x = null;
     $('#connector').submit(function(e) {
         e.preventDefault();
 
-        var remoteIDValue = $('#remoteID').val();
+        var remoteIDValue = $('#remote-id').val();
 
         remoteID = remoteIDValue;
         
@@ -262,19 +255,19 @@ var x = null;
         
         conn.on('open', function() {
             $('#status').text('Connected to: ' + conn.peer);
-            console.log('Connected to: ' + conn.peer);
 
             $('#connector').fadeOut();
 
             $('#messagebox').fadeIn();
             $('#nudge').fadeIn();
             $('#message').focus();
+
+            $('#room').show();
             
         });
 
         conn.on('close', function() {
             $('#status').text('Connection closed');
-            console.log('Connection closed');
 
             x = null;
 
@@ -287,7 +280,6 @@ var x = null;
 
 
         conn.on('data', function(data) {
-            console.log(data);
             
             $('#isTyping').text('Typing...');
 

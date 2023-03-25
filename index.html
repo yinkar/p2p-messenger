@@ -21,8 +21,14 @@
         </div>
         <div id="panel">
             <form id="connector">
-                <input type="text" disabled id="localID">
-                <input type="text" name="remoteID" id="remoteID">
+                <div>
+                    <label for="local_id">Your ID</label>
+                    <input type="text" name="local_id" id="local-id" disabled>
+                </div>
+                <div>
+                    <label for="remote_id">ID to connect</label>
+                    <input type="text" name="remote_id" id="remote-id" required>
+                </div>
                 <button type="submit">Connect</button>
             </form>
             <form id="messagebox" autocomplete="off">
