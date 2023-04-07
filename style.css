@@ -57,6 +57,7 @@ button:hover {
   box-shadow: 0px 2px 4px rgba(0 0 0 / 30%);
   border-radius: 4px;
   margin-bottom: 10px;
+  font-size: 1rem;
 }
 
 #typingMessage {
@@ -91,12 +92,17 @@ button:hover {
   word-wrap: break-word;
 }
 
+.message b {
+  color: #222;
+  margin-bottom: 20px;
+}
+
 .remote {
-  background-color: rgba(255, 81, 0, 0.1);
+  background-color: #FAEDCD;
 }
 
 .client {
-  background-color: rgba(0, 0, 255, .1);
+  background-color: #FEFAE0;
 }
 
 .local-id-container {

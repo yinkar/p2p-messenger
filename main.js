@@ -84,7 +84,7 @@ var x = null;
   function msgNofity(_title, _body) {
     if (!document.hasFocus()) {
       notify(_title, _body);
-      document.title = 'Have new messages';
+      document.title = 'New messages';
     }
     else {
       document.title = docTitle;
@@ -198,7 +198,7 @@ var x = null;
         if (data.message) {
           var message = clear(data.message);
           var owner = clear(remoteID);
-          $('#room').append('<div class="message remote"><p><b>' + owner + ':</b> ' + message + '</p></div>');
+          $('#room').append('<div class="message remote"><p><b>' + owner + '</b></p><p> ' + message + '</p></div>');
 
           $('#room').scrollTop($('#room')[0].scrollHeight);
 
@@ -228,7 +228,7 @@ var x = null;
 
     peer.on('close', function () {
       conn = null;
-      $('#status').text('Connection destroyed');
+      $('#status').text('Connection closed');
     });
 
     peer.on('error', function (err) {
@@ -290,7 +290,7 @@ var x = null;
       if (data.message) {
         var message = clear(data.message);
         var owner = clear(remoteID);
-        $('#room').append('<div class="message remote"><p><b>' + owner + ':</b> ' + message + '</p></div>');
+        $('#room').append('<div class="message remote"><p><b>' + owner + '</b></p><p> ' + message + '</p></div>');
 
         $('#room').scrollTop($('#room')[0].scrollHeight);
 
@@ -321,7 +321,7 @@ var x = null;
     var message = clear($('#message').val());
     var owner = clear(peerID);
     $('#message').val('');
-    $('#room').append('<div class="message client"><p><b>' + owner + ':</b> ' + message + '</p></div>');
+    $('#room').append('<div class="message client"><p><b>' + owner + '</b></p><p> ' + message + '</p></div>');
 
 
     if (conn) {
