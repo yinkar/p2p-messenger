@@ -254,7 +254,7 @@ var x = null;
     x = conn;
 
     conn.on('open', function () {
-      $('#status').text('Connected to: ' + conn.peer);
+      $('#status').text('Connected to: ' + conn.peer.substring(5));
 
       $('#connect-panel').fadeOut();
 
