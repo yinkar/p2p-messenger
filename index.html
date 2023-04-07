@@ -1,49 +1,58 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>P2P Messenger</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%3E%3Ctext%20x='0'%20y='14'%3E💬%3C/text%3E%3C/svg%3E" type="image/svg+xml">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>P2P Messenger</title>
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%3E%3Ctext%20x='0'%20y='14'%3E💬%3C/text%3E%3C/svg%3E"
+    type="image/svg+xml">
 
-    <link rel="stylesheet" href="style.css">
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
 </head>
+
 <body>
-    
-    <div id="chat" class="not-login">
-        <div id="room">
-            
-        </div>
-        <div id="panel">
-            <form id="connector">
-                <div>
-                    <label for="local_id">Your ID</label>
-                    <input type="text" name="local_id" id="local-id" disabled>
-                </div>
-                <div>
-                    <label for="remote_id">ID to connect</label>
-                    <input type="text" name="remote_id" id="remote-id" required>
-                </div>
-                <button type="submit">Connect</button>
-            </form>
-            <form id="messagebox" autocomplete="off">
-                <input type="text" id="message" required autofocus>
-                <button type="submit">Send</button>
-            </form>
-            <button id="nudge">Nudge</button>            
-            <div id="status"></div>
-            <div id="isTyping"></div>
-            <div id="typingMessage"></div>
-        </div>
+
+  <div id="chat" class="not-login">
+    <div id="room">
+
     </div>
+    <div id="panel">
+      <form id="connect-panel">
+        <div class="local-id-container">
+          <strong>Your ID: </strong> <span id="local-id"></span>
+        </div>
+        <div class="remote-id-container">
+          <label for="remote_id">ID to connect</label>
+          <input type="text" name="remote_id" id="remote-id" required>
+          <button type="submit">Connect</button>
+        </div>
+      </form>
+      <form id="messagebox" autocomplete="off">
+        <div class="inputs">
+          <input type="text" id="message" required autofocus>
+          <button type="submit">Send</button>
+          <button id="nudge">Nudge</button>
+        </div>
+      </form>
+      <div id="status"></div>
+      <div id="isTyping"></div>
+      <div id="typingMessage"></div>
+    </div>
+  </div>
 
-    <audio id="nudgesound" src="assets/sound/nudge.mp3"></audio>
+  <audio id="nudgesound" src="assets/sound/nudge.mp3"></audio>
 
-    <script src="main.js"></script>
+  <script src="main.js"></script>
 </body>
+
 </html>
