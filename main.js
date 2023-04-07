@@ -333,7 +333,8 @@ var x = null;
     $('#message').focus();
   });
 
-  $('#nudge').click(function () {
+  $('#nudge').click(function (e) {
+    e.preventDefault();
     conn.send({ id: peerID, nudge: true });
     $('#chat').shake();
     $('#room').append('<div class="message client"><p><em>You sent a nudge</em></p></div>');
