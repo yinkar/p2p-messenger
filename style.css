@@ -88,14 +88,28 @@ button:hover {
   display: none;
 }
 
+.message-container {
+  filter: drop-shadow(0 4px 2px rgba(0, 0, 0, .2));
+}
+
 .message {
   padding: 0 15px;
-  border-bottom: 1px solid hsl(0, 0%, 87%);
   word-wrap: break-word;
   margin: 10px 20px;
   display: inline-block;
   border-radius: 20px;
   position: relative;
+}
+
+.message::before {
+  background-color: rgba(255, 255, 255, .3);
+  content: '';
+  width: calc(100% - 18px);
+  position: absolute;
+  left: 9px;
+  top: 2px;
+  height: 10px;
+  border-radius: 40px 40px 10px 10px;
 }
 
 .message b {

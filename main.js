@@ -210,7 +210,7 @@ var x = null;
 
         if (data.nudge) {
           $('#chat').shake();
-          $('#room').append('<div class="message-container remote-message-container"><div class="message remote"><p><em>' + data.id + ' sent you a nudge</em></p></div></div>');
+          $('#room').append('<div class="message-container remote-message-container"><div class="message remote"><p><em>' + data.id.substring(5) + ' sent you a nudge</em></p></div></div>');
           $('#room').scrollTop($('#room')[0].scrollHeight);
           $('#nudgesound')[0].play();
           msgNofity(data.id + ' bir titreşim yolladı', '');
@@ -294,7 +294,7 @@ var x = null;
 
       if (data.nudge) {
         $('#chat').shake();
-        $('#room').append('<div class="message-container remote-message-container"><div class="message remote"><p><em>' + data.id + ' sent you a nudge</em></p></div></div>');
+        $('#room').append('<div class="message-container remote-message-container"><div class="message remote"><p><em>' + data.id.substring(5) + ' sent you a nudge</em></p></div></div>');
         $('#room').scrollTop($('#room')[0].scrollHeight);
         $('#nudgesound')[0].play();
 
