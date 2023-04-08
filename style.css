@@ -129,11 +129,11 @@ button:hover {
   width: 0;
   height: 0;
   position: absolute;
-  left: 3px;
-  bottom: -2px;
+  left: 2px;
+  bottom: -5px;
   border-right: 10px solid transparent;
   border-bottom: 10px solid lightgreen;
-  transform: rotate(-108deg);
+  transform: rotate(205deg) scaleX(-1);
 }
 
 .local-id-container {
