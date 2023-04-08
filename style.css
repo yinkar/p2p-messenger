@@ -53,7 +53,7 @@ button:hover {
   width: 100%;
   height: 300px;
   overflow: auto;
-  background-color: #fff;
+  background-color: oldlace;
   box-shadow: 0px 2px 4px rgba(0 0 0 / 30%);
   border-radius: 4px;
   margin-bottom: 10px;
@@ -89,9 +89,13 @@ button:hover {
 }
 
 .message {
-  padding: 5px 10px;
-  border-bottom: 1px solid #ddd;
+  padding: 0 15px;
+  border-bottom: 1px solid hsl(0, 0%, 87%);
   word-wrap: break-word;
+  margin: 10px 20px;
+  display: inline-block;
+  border-radius: 20px;
+  position: relative;
 }
 
 .message b {
@@ -100,11 +104,36 @@ button:hover {
 }
 
 .remote {
-  background-color: #FAEDCD;
+  min-width: 200px;
+  background-color: lightgreen;
 }
 
 .client {
-  background-color: #FEFAE0;
+  background-color: powderblue;
+}
+
+.client::after {
+  content: '';
+  width: 0;
+  height: 0;
+  position: absolute;
+  right: 2px;
+  bottom: -4px;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid powderblue;
+  transform: rotate(-207deg);
+}
+
+.remote::after {
+  content: '';
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 3px;
+  bottom: -2px;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid lightgreen;
+  transform: rotate(-108deg);
 }
 
 .local-id-container {
@@ -137,6 +166,10 @@ button:hover {
 #status {
   padding: 40px 0 0 0;
   text-align: center;
+}
+
+.client-message-container {
+  text-align: right;
 }
 
 @media only screen and (max-width: 640px) {

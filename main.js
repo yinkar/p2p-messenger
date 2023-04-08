@@ -164,7 +164,6 @@ var x = null;
     });
 
     peer.on('connection', function (c) {
-
       remoteID = c.peer;
       if (conn) {
         c.on('open', function () {
@@ -188,17 +187,15 @@ var x = null;
 
       x = conn;
 
-      $('#status').text('Connected to: ' + conn.peer);
-
+      $('#status').text('Connected to: ' + conn.peer.substring(5));
 
       conn.on('data', function (data) {
-
         $('#isTyping').text('Typing...');
 
         if (data.message) {
           var message = clear(data.message);
           var owner = clear(remoteID);
-          $('#room').append('<div class="message remote"><p><b>' + owner + '</b></p><p> ' + message + '</p></div>');
+          $('#room').append('<div class="message-container remote-message-container"><div class="message remote"><p> ' + message + '</p></div></div>');
 
           $('#room').scrollTop($('#room')[0].scrollHeight);
 
@@ -213,7 +210,7 @@ var x = null;
 
         if (data.nudge) {
           $('#chat').shake();
-          $('#room').append('<div class="message remote"><p><em>' + data.id + ' sent you a nudge</em></p></div>');
+          $('#room').append('<div class="message-container remote-message-container"><div class="message remote"><p><em>' + data.id + ' sent you a nudge</em></p></div></div>');
           $('#room').scrollTop($('#room')[0].scrollHeight);
           $('#nudgesound')[0].play();
           msgNofity(data.id + ' bir titreşim yolladı', '');
@@ -224,7 +221,6 @@ var x = null;
     peer.on('disconnected', function () {
       $('#status').text('Connection lost');
     });
-
 
     peer.on('close', function () {
       conn = null;
@@ -263,7 +259,6 @@ var x = null;
       $('#message').focus();
 
       $('#room').show();
-
     });
 
     conn.on('close', function () {
@@ -278,9 +273,7 @@ var x = null;
       }, 5000);
     });
 
-
     conn.on('data', function (data) {
-
       $('#isTyping').text('Typing...');
 
       if (data.typingMessage) {
@@ -290,7 +283,7 @@ var x = null;
       if (data.message) {
         var message = clear(data.message);
         var owner = clear(remoteID);
-        $('#room').append('<div class="message remote"><p><b>' + owner + '</b></p><p> ' + message + '</p></div>');
+        $('#room').append('<div class="message-container remote-message-container"><div class="message remote"><p> ' + message + '</p></div></div>');
 
         $('#room').scrollTop($('#room')[0].scrollHeight);
 
@@ -301,7 +294,7 @@ var x = null;
 
       if (data.nudge) {
         $('#chat').shake();
-        $('#room').append('<div class="message remote"><p><em>' + data.id + ' sent you a nudge</em></p></div>');
+        $('#room').append('<div class="message-container remote-message-container"><div class="message remote"><p><em>' + data.id + ' sent you a nudge</em></p></div></div>');
         $('#room').scrollTop($('#room')[0].scrollHeight);
         $('#nudgesound')[0].play();
 
@@ -315,14 +308,12 @@ var x = null;
     $('#isTyping').text('');
   }, 1000);
 
-
   $('#messagebox').submit(function (e) {
     e.preventDefault();
     var message = clear($('#message').val());
     var owner = clear(peerID);
     $('#message').val('');
-    $('#room').append('<div class="message client"><p><b>' + owner + '</b></p><p> ' + message + '</p></div>');
-
+    $('#room').append('<div class="message-container client-message-container"><div class="message client"><p> ' + message + '</p></div></div>');
 
     if (conn) {
       conn.send({ message: message });
@@ -337,7 +328,7 @@ var x = null;
     e.preventDefault();
     conn.send({ id: peerID, nudge: true });
     $('#chat').shake();
-    $('#room').append('<div class="message client"><p><em>You sent a nudge</em></p></div>');
+    $('#room').append('<div class="message-container client-message-container"><div class="message client"><p><em>You sent a nudge</em></p></div></div>');
     $('#room').scrollTop($('#room')[0].scrollHeight);
     $('#nudgesound')[0].play();
   });
@@ -348,12 +339,10 @@ var x = null;
     }
   });
 
-
   window.onbeforeunload = confirmExit;
   function confirmExit() {
     if (conn) {
       return "Are you sure to exit?";
     }
   }
-
 })();
