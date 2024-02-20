@@ -91,11 +91,18 @@ var x = null;
     }
   }
 
+  const getRangeLength = (beginLength, endLength = null) => {
+    if (endLength === null) endLength = beginLength;
+
+    const max = 10 ** Math.max(beginLength, endLength);
+    const min = 10 ** (Math.min(beginLength, endLength) - 1);
+  
+    return Math.floor(Math.random() * (max - min)) + min;
+  };
 
   var peer = null;
   var peerID = null;
   var conn = null;
-  var randName = null;
   var remoteID = null;
 
   function initialize() {
@@ -109,9 +116,7 @@ var x = null;
     $('#message').prop('disabled', false);
     $('#messagebox button').prop('disabled', false);
 
-    randName = Math.floor((Math.random() * 9999) + 1);
-
-    peer = new Peer('Denek' + randName, {
+    peer = new Peer('Denek' + getRangeLength(4), {
       config: {
         'iceServers': [
           { urls: 'stun:stun01.sipphone.com' },
@@ -155,10 +160,6 @@ var x = null;
     peerID = peer.id;
 
     peer.on('open', function (id) {
-      if (peer.id === null) {
-        peer.id = 'Denek' + Math.floor((Math.random() * 9999) + 1);
-      }
-
       $('#local-id').text(peer.id.substring(5));
       $('#status').text('Waiting...');
     });
